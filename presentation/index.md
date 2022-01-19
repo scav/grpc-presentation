@@ -26,7 +26,7 @@ marp: true
 
 # Overview
 
-![](./../img/landing-2.svg)
+![bg center w:1024](./../img/landing-2.svg)
 
 ---
 
@@ -35,6 +35,7 @@ marp: true
 A very simple, but powerful binary serialization 
 
 ```protobuf
+// greeter.proto
 service Greeter {
   rpc SayHello (HelloRequest) returns (HelloReply) {}
   rpc SayHelloAgain (HelloRequest) returns (HelloReply) {}
@@ -88,6 +89,17 @@ service HelloService {
 
 ---
 
+# Buf
+
+* Tool for managing schemas
+* Dependencies & vendoring
+* Linting, compatibility checks
+* Schema registry
+
+![bg right w:600](../img/buf-schema.png)
+
+---
+
 # Server
 
 
@@ -102,8 +114,7 @@ function sayHelloAgain(call, callback) {
 
 function main() {
   var server = new grpc.Server();
-  server.addService(hello_proto.Greeter.service,
-                         {sayHello: sayHello, sayHelloAgain: sayHelloAgain});
+  server.addService(hello_proto.Greeter.service,{ sayHello,sayHelloAgain });
   server.bindAsync('0.0.0.0:50051', grpc.ServerCredentials.createInsecure(), () => {
     server.start();
   });
@@ -118,9 +129,11 @@ function main() {
 function main() {
   var client = new hello_proto.Greeter('localhost:50051',
                                        grpc.credentials.createInsecure());
+                                       
   client.sayHello({name: 'you'}, function(err, response) {
     console.log('Greeting:', response.message);
   });
+
   client.sayHelloAgain({name: 'you'}, function(err, response) {
     console.log('Greeting:', response.message);
   });

@@ -26,7 +26,7 @@ marp: true
 
 # Overview
 
-![](img/landing-2.svg)
+![](./../img/landing-2.svg)
 
 ---
 

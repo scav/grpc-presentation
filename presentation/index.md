@@ -17,16 +17,29 @@ marp: true
 
 # Summary
 
-1. Connects service as RPC
-2. Protocol Buffers
-3. Java, **`Rust`**, TypeScript, Go
-4. HTTP/2 transport ++
+1. HTTP/2
+1. gRPC 
+1. Protocol Buffers
+1. Java, **`Rust`**, TypeScript, Go
 
 ---
 
 # Overview
 
 ![bg center w:1024](./../img/landing-2.svg)
+
+---
+
+# HTTP/2 + gRPC
+* Multiplexing
+  * One connection for all the data
+  * As opposed to HTTP/1(.1) with multiple connections
+* Streams (directional and bidirectional)
+* Load balancing
+* Connection management
+* Maintains healthy coonnections
+* KeepAlive (ping servers to avoid killing idle)
+
 
 ---
 
